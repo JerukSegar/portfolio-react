@@ -11,7 +11,8 @@ const SkillsSection = () => {
     frontend: [
       { name: 'HTML5', icon: 'fab fa-html5' },
       { name: 'CSS3', icon: 'fab fa-css3-alt' },
-      { name: 'JavaScript', icon: 'fab fa-js-square' }
+      { name: 'JavaScript', icon: 'fab fa-js-square' },
+      { name: 'React', icon: 'fab fa-react' }
     ],
     tools: [
       { name: 'Git', icon: 'fab fa-git-alt' },

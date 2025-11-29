@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [showAllTeamProjects, setShowAllTeamProjects] = useState(false);
+  const [showAllPersonalProjects, setShowAllPersonalProjects] = useState(false);
 
-  // Project Data - sama seperti di script.js
+  // Project Data - diperbarui dengan tags khusus
   const projectsData = {
     'jemuran': {
         title: 'JEMURAN THE GAME',
@@ -16,13 +18,14 @@ const ProjectsSection = () => {
         ],
         description: 'A management-survival game where the players take on the role of a child tasked with laundry duty by his mother Balance time, resources, and unexpected events while keeping the laundry safe from various hazards.',
         techStack: [
-            'Genre: Management/Survival',
             'Game Engine: Godot 4.0',
             'Programming: GDScript',
             'Art Style: 2D Pixel Art, Top-down',
             'Platform: Windows PC',
-            'Genre: Management, Survival, Simulation'
+            'Genre: Management, Survival, Simulation',
+            'Auido: Open-sourced'
         ],
+        tags: ['Godot', '2D Game'],
         roles: [
             'Game Artist & Asset Designer',
             'Developed visual style and art direction',
@@ -33,7 +36,7 @@ const ProjectsSection = () => {
             'Progressive difficulty system',
             'Multiple levels'
         ],
-        demoVideo: '', // Kosong untuk unavailable
+        demoVideo: '',
         projectType: 'game'
     },
     'sproste': {
@@ -53,8 +56,10 @@ const ProjectsSection = () => {
             'Physics: Unity Physics 2D',
             'Art Style: 2D Pixel Art, Side-scroller',
             'Platform: Windows PC',
+            'Genre: Puzzle Adventure',
             'Auido: Open-sourced'
         ],
+        tags: ['Unity','2D Game'],
         roles: [
             'Lead Game Artist',
             'Developed visual style and art direction',
@@ -70,8 +75,38 @@ const ProjectsSection = () => {
             'narrative storytelling',
             'Intuitive UI/UX'
         ],
-        demoVideo: '', // Kosong untuk unavailable
+        demoVideo: '',
         projectType: 'game'
+    },
+    'content-management-app': {
+        title: 'CONTENT MANAGEMENT APP BACKEND',
+        mainImage: 'project5.png',
+        gallery: [
+            'project5.jpg'
+        ],
+        description: 'A comprehensive content management application for scheduling, organizing, and tracking social media/content performance. Features include content scheduling, view tracking, and content categorization.',
+        techStack: [
+            'Backend: Go (Golang)',
+            'Data Structure: Arrays & Structs',
+            'Algorithm: Bubble Sort'
+        ],
+        tags: ['Golang', 'Backend'],
+        roles: [
+            'Backend Developer',
+            'Developed search and sorting functionalities'
+        ],
+        features: [
+            'Content scheduling with date/time management',
+            'Unique content code validation system',
+            'View tracking and performance analytics',
+            'Content categorization and organization',
+            'Search functionality by unique codes',
+            'Sorting by view count (descending order)',
+            'Content idea suggestion system',
+            'Input validation and error handling'
+        ],
+        webLink: 'https://github.com/JerukSegar/GoLanguage-contentManagement.git',
+        projectType: 'website'
     },
     'portfolio': {
         title: 'PORTFOLIO WEBSITE',
@@ -81,7 +116,7 @@ const ProjectsSection = () => {
             'pcview.png',
             'mobileview.jpg'
         ],
-        description: 'A React-based portfolio website showcasing my projects and skills as a programmer and game artist.',
+        description: 'A React built portfolio website showcasing my projects and skills as a programmer and game artist.',
         techStack: [
             'Frontend: React, JavaScript (ES6+)',
             'State Management: React Hooks (useState, useEffect)',
@@ -91,6 +126,7 @@ const ProjectsSection = () => {
             'Deployment: Vercel',
             'Version Control: Git & GitHub'
         ],
+        tags: ['React', 'Frontend'],
         roles: [
             'Frontend Developer & UI/UX Designer',
             'Converted vanilla JS website to React components',
@@ -125,6 +161,7 @@ const ProjectsSection = () => {
             'Deployment: Vercel',
             'Version Control: Git & GitHub'
         ],
+        tags: ['JavaScript', 'HTML', 'CSS'],
         roles: [
             'Full-stack Developer',
             'Game Designer',
@@ -143,7 +180,37 @@ const ProjectsSection = () => {
         webLink: 'https://penalty-sim.vercel.app/',
         projectType: 'website'
     },
+    'placeholder': {
+        title: '[PLACEHOLDER]',
+        mainImage: 'placeholder.jpg',
+        gallery: [
+            'placeholder.jpg'
+        ],
+        description: '[PLACEHOLDER PROJECT DESCRIPTION]',
+        techStack: [
+            '[PLACEHOLDER]: Technology 1',
+            '[PLACEHOLDER]: Technology 2',
+            '[PLACEHOLDER]: Technology 3'
+        ],
+        tags: ['TECH1', 'TECH2', 'TECH3'],
+        roles: [
+            '[PLACEHOLDER ROLE 1]',
+            '[PLACEHOLDER ROLE 2]',
+            '[PLACEHOLDER ROLE 3]'
+        ],
+        features: [
+            '[PLACEHOLDER FEATURE 1]',
+            '[PLACEHOLDER FEATURE 2]',
+            '[PLACEHOLDER FEATURE 3]'
+        ],
+        webLink: '',
+        projectType: 'website'
+    },
   };
+
+  // Project arrays untuk masing-masing kategori
+  const teamProjects = ['jemuran', 'sproste', 'content-management-app'];
+  const personalProjects = ['portfolio', 'penalty-shooter', 'placeholder'];
 
   const [activeImage, setActiveImage] = useState('');
 
@@ -176,6 +243,28 @@ const ProjectsSection = () => {
     e.target.src = 'placeholder.jpg';
   };
 
+  // Render project card - DIPERBAIKI: menggunakan tags khusus
+  const renderProjectCard = (projectKey) => {
+    const project = projectsData[projectKey];
+    return (
+      <div key={projectKey} className="project-card">
+        <img src={project.mainImage} alt={project.title} onError={handleImageError} />
+        <div className="project-info">
+          <h3>{project.title}</h3>
+          <p>{project.description}</p>
+          <div className="project-tech">
+            {project.tags.map((tag, index) => (
+              <span key={index}>{tag}</span>
+            ))}
+          </div>
+          <a href="#" className="project-link" onClick={(e) => { e.preventDefault(); openModal(projectKey); }}>
+            View Details
+          </a>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section id="projects" className="projects">
       <div className="container">
@@ -190,87 +279,76 @@ const ProjectsSection = () => {
         <div className="project-category">
           <h3 className="project-category-title">Team Projects</h3>
           <div className="projects-grid">
-            {/* Jemuran Project */}
-            <div className="project-card">
-              <img src="logo_jemuran.png" alt="Jemuran the Game" onError={handleImageError} />
-              <div className="project-info">
-                <h3>JEMURAN THE GAME</h3>
-                <p>A management genre game where the player plays as a little kid who is assigned to look after the laundry by his mother.</p>
-                <div className="project-tech">
-                  <span>GODOT</span>
-                  <span>Pixel 2D</span>
-                  <span>Management</span>
-                </div>
-                <a href="#" className="project-link" onClick={(e) => { e.preventDefault(); openModal('jemuran'); }}>
-                  View Details
-                </a>
-              </div>
-            </div>
-
-            {/* Sproste Project */}
-            <div className="project-card">
-              <img src="logo_sproste.png" alt="Sproste" onError={handleImageError} />
-              <div className="project-info">
-                <h3>SPROSTE</h3>
-                <p>A 2D, physics-based environmental puzzle game where players control an exploration robot in a trash-filled world.</p>
-                <div className="project-tech">
-                  <span>Unity</span>
-                  <span>Pixel 2D</span>
-                  <span>Puzzle</span>
-                </div>
-                <a href="#" className="project-link" onClick={(e) => { e.preventDefault(); openModal('sproste'); }}>
-                  View Details
-                </a>
-              </div>
-            </div>
+            {/* Tampilkan 2 project pertama */}
+            {teamProjects.slice(0, 2).map(projectKey => renderProjectCard(projectKey))}
+            
+            {/* Tampilkan project tambahan jika showAllTeamProjects true */}
+            {showAllTeamProjects && teamProjects.slice(2).map(projectKey => renderProjectCard(projectKey))}
           </div>
+          
+          {/* View More / View Less Button */}
+          {teamProjects.length > 2 && (
+            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+              {!showAllTeamProjects ? (
+                <button 
+                  className="btn btn-primary"
+                  onClick={() => setShowAllTeamProjects(true)}
+                >
+                  View More Team Projects
+                </button>
+              ) : (
+                <button 
+                  className="btn btn-secondary"
+                  onClick={() => setShowAllTeamProjects(false)}
+                >
+                  View Less
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Personal Projects */}
         <div className="project-category">
           <h3 className="project-category-title">Personal Projects</h3>
           <div className="projects-grid">
-            {/* Portfolio Project */}
-            <div className="project-card">
-              <img src="profile.png" alt="Portfolio Website" onError={handleImageError} />
-              <div className="project-info">
-                <h3>PORTFOLIO WEBSITE</h3>
-                <p>Personal portfolio website to showcase my projects and skills as a programmer and game artist.</p>
-                <div className="project-tech">
-                  <span>HTML5</span>
-                  <span>CSS3</span>
-                  <span>JavaScript</span>
-                </div>
-                <a href="#" className="project-link" onClick={(e) => { e.preventDefault(); openModal('portfolio'); }}>
-                  View Details
-                </a>
-              </div>
-            </div>
-
-            {/* Penalty Shooter Project */}
-            <div className="project-card">
-              <img src="project4.jpg" alt="Penalty Shooter Simulator" onError={handleImageError} />
-              <div className="project-info">
-                <h3>PENALTY SHOOTER SIMULATOR</h3>
-                <p>A website that contains a simulation of a penalty shootout in football.</p>
-                <div className="project-tech">
-                  <span>HTML5</span>
-                  <span>CSS3</span>
-                  <span>JavaScript</span>
-                </div>
-                <a href="#" className="project-link" onClick={(e) => { e.preventDefault(); openModal('penalty-shooter'); }}>
-                  View Details
-                </a>
-              </div>
-            </div>
+            {/* Tampilkan 2 project pertama */}
+            {personalProjects.slice(0, 2).map(projectKey => renderProjectCard(projectKey))}
+            
+            {/* Tampilkan project tambahan jika showAllPersonalProjects true */}
+            {showAllPersonalProjects && personalProjects.slice(2).map(projectKey => renderProjectCard(projectKey))}
           </div>
+          
+          {/* View More / View Less Button */}
+          {personalProjects.length > 2 && (
+            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+              {!showAllPersonalProjects ? (
+                <button 
+                  className="btn btn-primary"
+                  onClick={() => setShowAllPersonalProjects(true)}
+                >
+                  View More Personal Projects
+                </button>
+              ) : (
+                <button 
+                  className="btn btn-secondary"
+                  onClick={() => setShowAllPersonalProjects(false)}
+                >
+                  View Less
+                </button>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Modal */}
         {selectedProject && (
           <div className="modal" id="projectModal" style={{display: 'block'}}>
             <div className="modal-content">
-              <span className="close" onClick={closeModal}>&times;</span>
+              <div className="modal-header">
+                <h2>{selectedProject.title}</h2>
+                <span className="close" onClick={closeModal}>&times;</span>
+              </div>
               
               <div className="modal-body">
                 <div className="modal-gallery">
@@ -299,8 +377,6 @@ const ProjectsSection = () => {
                 </div>
                 
                 <div className="project-details">
-                  <h2 id="modalTitle">{selectedProject.title}</h2>
-                  
                   <div className="detail-section">
                     <h3>
                       {selectedProject.projectType === 'website' ? 'Project Description' : 'Game Description'}
