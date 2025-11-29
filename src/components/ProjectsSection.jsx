@@ -16,7 +16,7 @@ const ProjectsSection = () => {
             'jemuran-gameplay2.png',
             'jemuran-character.png'
         ],
-        description: 'A management-survival game where the players take on the role of a child tasked with laundry duty by his mother Balance time, resources, and unexpected events while keeping the laundry safe from various hazards.',
+        description: 'Developed with 5 other developers, a management-survival game where the players take on the role of a child tasked with laundry duty by his mother Balance time, resources, and unexpected events while keeping the laundry safe from various hazards.',
         techStack: [
             'Game Engine: Godot 4.0',
             'Programming: GDScript',
@@ -49,7 +49,7 @@ const ProjectsSection = () => {
             'sproste-gameplay2.png',
             'sproste-character.png'
         ],
-        description: 'A 2D, physics-based environmental puzzle game in which players assume the role of an exploration robot navigating a barren, trash-filled world to find a plant.',
+        description: 'Developed wth 3 other developers, a 2D, physics-based environmental puzzle game in which players assume the role of an exploration robot navigating a barren, trash-filled world to find a plant.',
         techStack: [
             'Game Engine: Unity',
             'Programming: C#',
@@ -84,7 +84,7 @@ const ProjectsSection = () => {
         gallery: [
             'project5.jpg'
         ],
-        description: 'A comprehensive content management application for scheduling, organizing, and tracking social media/content performance. Features include content scheduling, view tracking, and content categorization.',
+        description: 'Created with 2 other developers, a comprehensive content management application for scheduling, organizing, and tracking social media/content performance. Features include content scheduling, view tracking, and content categorization.',
         techStack: [
             'Backend: Go (Golang)',
             'Data Structure: Arrays & Structs',
