@@ -36,7 +36,7 @@ const ProjectsSection = () => {
             'Progressive difficulty system',
             'Multiple levels'
         ],
-        demoVideo: '',
+        demoVideo: 'https://www.instagram.com/p/DQKPqm9Eyz1/?img_index=1&igsh=NDcxanRuOWVlOXFp',
         projectType: 'game'
     },
     'sproste': {
@@ -75,7 +75,7 @@ const ProjectsSection = () => {
             'narrative storytelling',
             'Intuitive UI/UX'
         ],
-        demoVideo: '',
+        demoVideo: 'https://drive.google.com/file/d/1LL4SZW4ib30VmNYmX0YzdpTnd30p_F1e/view?usp=sharing',
         projectType: 'game'
     },
     'content-management-app': {
@@ -149,17 +149,19 @@ const ProjectsSection = () => {
         projectType: 'website'
     },
     'penalty-shooter': {
-        title: 'PENALTY SHOOTER SIMULATOR (unfinished)',
-        mainImage: 'project4.jpg',
+        title: 'PENALTY SHOOTER SIMULATOR',
+        mainImage: 'project4.png',
         gallery: [
-            'project4.jpg'
+            'project4.png',
+            'player.png',
+            'goal.png'
         ],
         description: 'A web based football penalty shootout simulator. Experience the tension of penalty kicks with dynamic difficulty.',
         techStack: [
             'Frontend: HTML5, CSS3, JavaScript (ES6+)',
-            'Game Engine: Vanilla JavaScript Canvas',
+            'Game Engine: Vanilla JavaScript',
             'Deployment: Vercel',
-            'Version Control: Git & GitHub'
+            'Version Control: GitHub'
         ],
         tags: ['JavaScript', 'HTML', 'CSS'],
         roles: [
@@ -181,7 +183,7 @@ const ProjectsSection = () => {
         projectType: 'website'
     },
     'placeholder': {
-        title: '[PLACEHOLDER]',
+        title: 'COMING SOON',
         mainImage: 'placeholder.jpg',
         gallery: [
             'placeholder.jpg'

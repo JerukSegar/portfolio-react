@@ -65,7 +65,7 @@ const AboutSection = () => {
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <Counter target={5} duration={1.2} isInView={isInView} />
+                <Counter target={6} duration={1.2} isInView={isInView} />
               </motion.h3>
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
@@ -81,7 +81,7 @@ const AboutSection = () => {
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <Counter target={2} duration={0.8} isInView={isInView} />
+                <Counter target={3} duration={0.8} isInView={isInView} />
               </motion.h3>
               <motion.p
                 initial={{ y: 20, opacity: 0 }}
